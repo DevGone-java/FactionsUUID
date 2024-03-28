@@ -474,6 +474,7 @@ public enum TL {
     COMMAND_PERMANENT_OTHER("%s&e has %s the faction '%s&e'."),
     COMMAND_PROMOTE_TARGET("You've been %1$s to %2$s"),
     COMMAND_PROMOTE_ISALT("That player is an alt!"),
+    COMMAND_PROMOTE_ISRECRUIT("You cannot demote a recruit!"),
     COMMAND_PROMOTE_SUCCESS("You successfully %1$s %2$s to %3$s"),
     COMMAND_PROMOTE_PROMOTED("promoted"),
     COMMAND_PROMOTE_DEMOTED("demoted"),

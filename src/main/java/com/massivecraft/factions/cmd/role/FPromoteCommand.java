@@ -39,6 +39,11 @@ public class FPromoteCommand extends FCommand {
             return;
         }
 
+        if (relative < 0 && target.getRole() == Role.RECRUIT) {
+            context.msg(TL.COMMAND_PROMOTE_ISRECRUIT);
+            return;
+        }
+
         if (!target.getFaction().equals(context.faction) && !context.fPlayer.isAdminBypassing()) {
             context.msg(TL.COMMAND_PROMOTE_WRONGFACTION, target.getName());
             return;
