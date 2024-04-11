@@ -901,10 +901,18 @@ public class FactionsPlayerListener extends AbstractListener {
 
         for(int i = 0; i < 10 && i < info.size(); i++){
             String[] strings = info.get(i);
+            String material;
+            try {
+                material = CraftMagicNumbers.getMaterial(CraftMagicNumbers.getBlock(Integer.parseInt(strings[5]))).name().toLowerCase();
+            } catch (NullPointerException exc) {
+                // Can be thrown from a material that doesn't exist.
+                material = "Unknown";
+            }
+
             Object[] vars = new Object[] {i + 1,
                     strings[1],
                     calcTime(Long.parseLong(strings[0])),
-                    CraftMagicNumbers.getMaterial(CraftMagicNumbers.getBlock(Integer.parseInt(strings[5]))).name().toLowerCase(),
+                    material,
                     intToAction(Integer.parseInt(strings[7]), Integer.parseInt(strings[6]))};
             fPlayer.msg(TL.INSPECT_FORMAT, vars);
         }
