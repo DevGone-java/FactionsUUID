@@ -4,6 +4,9 @@ import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.Faction;
+import com.massivecraft.factions.Factions;
+import com.massivecraft.factions.FactionsPlugin;
 import com.massivecraft.factions.perms.Relation;
 import com.massivecraft.factions.perms.Role;
 import org.bukkit.entity.Player;
@@ -32,7 +35,16 @@ public enum Contexts implements Context {
         FPlayer p = FPlayers.getInstance().getByPlayer(player);
         return p.hasFaction() ? p.getRole().getRoleNamesAtOrAbove() : Collections.emptySet();
     },
-            Arrays.stream(Role.values()).map(role -> role.name().toLowerCase()).collect(Collectors.toSet()));
+            Arrays.stream(Role.values()).map(role -> role.name().toLowerCase()).collect(Collectors.toSet())),
+    FACTION_NAME((player) -> {
+        FPlayer p = FPlayers.getInstance().getByPlayer(player);
+        return Collections.singleton(p.hasFaction() ? p.getFaction().getTag() : "Wilderness");
+    }, Factions.getInstance().getAllFactions().stream().map(Faction::getTag).collect(Collectors.toSet())),
+    FACTION_ID((player) -> {
+        FPlayer p = FPlayers.getInstance().getByPlayer(player);
+        return Collections.singleton(p.hasFaction() ? p.getFaction().getId() : "0");
+    }, Factions.getInstance().getAllFactions().stream().map(Faction::getId).collect(Collectors.toSet())),
+    ;
 
 
     /**
