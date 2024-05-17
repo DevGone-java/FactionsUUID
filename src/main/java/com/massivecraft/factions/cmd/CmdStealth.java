@@ -1,9 +1,11 @@
 package com.massivecraft.factions.cmd;
 
 import com.massivecraft.factions.FPlayer;
+import com.massivecraft.factions.event.FPlayerToggleStealthEvent;
 import com.massivecraft.factions.struct.Permission;
 import com.massivecraft.factions.util.TL;
 import com.massivecraft.factions.util.TextUtil;
+import org.bukkit.Bukkit;
 
 public class CmdStealth extends FCommand{
     public CmdStealth(){
@@ -16,6 +18,10 @@ public class CmdStealth extends FCommand{
     @Override
     public void perform(CommandContext context) {
         FPlayer fPlayer = context.fPlayer;
+        FPlayerToggleStealthEvent event = new FPlayerToggleStealthEvent(fPlayer, FPlayerToggleStealthEvent.Type.COMMAND);
+        Bukkit.getPluginManager().callEvent(event);
+        if(event.isCancelled())
+            return;
 
         boolean stealth = fPlayer.isStealth();
 

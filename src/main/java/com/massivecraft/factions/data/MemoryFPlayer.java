@@ -8,6 +8,7 @@ import com.massivecraft.factions.Faction;
 import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.FactionsPlugin;
 import com.massivecraft.factions.event.FPlayerLeaveEvent;
+import com.massivecraft.factions.event.FPlayerToggleStealthEvent;
 import com.massivecraft.factions.event.FactionAutoDisbandEvent;
 import com.massivecraft.factions.event.LandClaimEvent;
 import com.massivecraft.factions.iface.EconomyParticipator;
@@ -1382,6 +1383,10 @@ public abstract class MemoryFPlayer implements FPlayer {
 
     @Override
     public void setStealth(boolean stealth) {
+        FPlayerToggleStealthEvent event = new FPlayerToggleStealthEvent(this, FPlayerToggleStealthEvent.Type.METHOD);
+        Bukkit.getPluginManager().callEvent(event);
+        if(event.isCancelled())
+            return;
         this.stealth = stealth;
     }
 }
