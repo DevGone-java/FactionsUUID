@@ -86,10 +86,10 @@ public class FlightUtil {
                 return false;
 
             int radiusSquared = radius * radius;
+            boolean ignoreYLevel = FactionsPlugin.getInstance().conf().commands().fly().isIgnoreYPositionOnEnemyCheck();
             Location loc = target.getPlayer().getLocation().clone();
-            loc.setY(1);
-            //This allows for a horizontal check only, ignoring Y position
-            //(Prevents a bypass by flying to skylimit which makes this method always return false)
+            if(ignoreYLevel)
+                loc.setY(1);
             Location cur;
             for (FPlayer player : players) {
                 if (player.isStealth() || player == target || (player.getPlayer() != null && Permission.FLY_ANY.has(player.getPlayer())) || player.isAdminBypassing() || (player.getPlayer() != null && player.getPlayer().getGameMode() == GameMode.SPECTATOR)) {
@@ -97,7 +97,8 @@ public class FlightUtil {
                 }
 
                 cur = player.getPlayer().getLocation().clone();
-                cur.setY(1);
+                if(ignoreYLevel)
+                    cur.setY(1);
 
                 if (cur.getWorld().getUID().equals(loc.getWorld().getUID()) &&
                         cur.distanceSquared(loc) <= radiusSquared &&
