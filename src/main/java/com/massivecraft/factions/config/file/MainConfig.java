@@ -199,6 +199,8 @@ public class MainConfig {
                     "Set to 0 if wanted disable\n" +
                     "Note: Will produce lag at higher numbers")
             private int enemyRadius = 7;
+            @Comment("If true this will ignore Y positions when checking for enemies nearby.")
+            private boolean ignoreYPositionOnEnemyCheck = false;
             @Comment("How frequently to check enemy radius, in seconds. Set to 0 to disable checking.")
             private int radiusCheck = 1;
             @Comment("Should we disable flight if the player has suffered generic damage")
@@ -233,6 +235,10 @@ public class MainConfig {
 
             public int getEnemyRadius() {
                 return enemyRadius;
+            }
+
+            public boolean isIgnoreYPositionOnEnemyCheck() {
+                return ignoreYPositionOnEnemyCheck;
             }
 
             public int getRadiusCheck() {
