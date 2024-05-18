@@ -31,7 +31,7 @@ public class CmdStealth extends FCommand{
             context.fPlayer.msg(TL.COMMAND_STEALTH_TOGGLE, TextUtil.parseColor("&aON"));
         }
 
-        context.fPlayer.setStealth(!stealth);
+        context.fPlayer.setStealthFromCommand(!stealth);
     }
 
     @Override

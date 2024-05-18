@@ -1389,4 +1389,10 @@ public abstract class MemoryFPlayer implements FPlayer {
             return;
         this.stealth = stealth;
     }
+
+    public void setStealthFromCommand(boolean stealth) {
+        // Directly set the stealth state without firing the event again
+        this.stealth = stealth;
+    }
+
 }
