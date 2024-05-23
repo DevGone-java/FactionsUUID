@@ -27,6 +27,8 @@ public class EssentialsListener implements Listener {
 
     @EventHandler
     public void onLeave(FPlayerLeaveEvent event) throws Exception {
+        if(!FactionsPlugin.getInstance().conf().factions().other().isDeleteEssentialsHomes())
+            return;
         // Get the USER from their UUID.
         Faction faction = event.getFaction();
         User user = ess.getUser(UUID.fromString(event.getfPlayer().getId()));
@@ -65,7 +67,7 @@ public class EssentialsListener implements Listener {
     @EventHandler
     public void onTeleportToHomeEvent(UserTeleportHomeEvent e)
     {
-        if(e.getHomeType() != UserTeleportHomeEvent.HomeType.HOME)
+        if(e.getHomeType() != UserTeleportHomeEvent.HomeType.HOME || !FactionsPlugin.getInstance().conf().factions().other().isDenyEssentialsHomeTeleport())
             return;
         IUser user = e.getUser();
         Player p = user.getBase();
