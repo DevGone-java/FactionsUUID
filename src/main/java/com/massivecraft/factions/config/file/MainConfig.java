@@ -1922,6 +1922,12 @@ public class MainConfig {
                     "if they have homes set in that Faction's territory?")
             private boolean deleteEssentialsHomes = true;
 
+            @Comment("Should we deny a player from teleporting to their essentials home if its located in another Faction's territory?\n" +
+                     "if you have 'deleteEssentialsHomes' to true and you have a roster system on your server, it will delete all homes\n " +
+                     "everytime a player rotates out, but when you have 'denyEssentialsHomeTeleport' to true it will not delete their homes\n" +
+                     "when they get rotated out, rather it will just deny teleporting until they rejoin the faction.")
+            private boolean denyEssentialsHomeTeleport = false;
+
             @Comment("Default Relation allows you to change the default relation for Factions.\n" +
                     "Example usage would be so people can't leave then make a new Faction while Raiding\n" +
                     "  in order to be able to execute commands if the default relation is neutral.")
@@ -1957,6 +1963,11 @@ public class MainConfig {
 
             public boolean isDeleteEssentialsHomes() {
                 return deleteEssentialsHomes;
+            }
+
+            public boolean isDenyEssentialsHomeTeleport()
+            {
+                return denyEssentialsHomeTeleport;
             }
 
             public String getDefaultRelation() {
