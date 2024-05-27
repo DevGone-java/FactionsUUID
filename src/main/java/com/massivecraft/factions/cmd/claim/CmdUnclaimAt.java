@@ -41,7 +41,6 @@ public class CmdUnclaimAt extends FCommand
         int z = context.argAsInt(2);
         FLocation targetLocation = new FLocation(context.argAsString(0), x, z);
         FLocation playerLocation = context.fPlayer.getLastStoodAt();
-        //todo make it so admin bypass can unclaim faction land for another faction
 
         if(FactionsPlugin.getInstance().conf().factions().claims().isLimitClaimAtDistance() && !context.fPlayer.isAdminBypassing())
         {
@@ -67,7 +66,14 @@ public class CmdUnclaimAt extends FCommand
                 context.fPlayer.msg(TL.COMMAND_CLAIMAT_WRONGWORLD.toString());
             }
         }
-        else unClaim(targetLocation, context, context.faction, null);
+        else
+        {
+            if(unClaim(targetLocation, context, context.faction, null))
+            {
+                if(context.argAsBool(3, false))
+                    context.sendFancyMessage(Board.getInstance().getMap(context.fPlayer, new FLocation(context.fPlayer), context.fPlayer.getPlayer().getLocation().getYaw()));
+            }
+        }
     }
 
 

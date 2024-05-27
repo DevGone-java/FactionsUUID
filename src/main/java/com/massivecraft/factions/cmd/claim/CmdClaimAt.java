@@ -62,7 +62,13 @@ public class CmdClaimAt extends FCommand
             }
         }
         else
-            context.fPlayer.attemptClaim(context.faction, targetLocation, true);
+        {
+            if(context.fPlayer.attemptClaim(context.faction, targetLocation, true))
+            {
+                if(context.argAsBool(3, false))
+                    context.sendFancyMessage(Board.getInstance().getMap(context.fPlayer, new FLocation(context.fPlayer), context.fPlayer.getPlayer().getLocation().getYaw()));
+            }
+        }
     }
 
 

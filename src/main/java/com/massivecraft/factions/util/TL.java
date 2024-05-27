@@ -817,7 +817,7 @@ public enum TL {
     CLAIM_CLICK_TO_CLAIM("Click to try to claim &2(%1$d, %2$d)"),
     CLAIM_CLICK_TO_UNCLAIM("Click to try to unclaim &2(%1$d, %2$d)"),
     CLAIM_YOUAREHERE("You are here"),
-    CLAIMEDTOOLTIP_FACTIONNAME("%d"),
+    CLAIMEDTOOLTIP_FACTIONNAME("Claimed by: &c%s"),
 
     /**
      * More generic, or less easily categorisable translations, which may apply to more than one class

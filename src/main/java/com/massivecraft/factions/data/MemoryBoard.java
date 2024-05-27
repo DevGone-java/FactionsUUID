@@ -487,12 +487,21 @@ public abstract class MemoryBoard extends Board
                                                     " true");
                             }
                         }
-                        else if(fplayer.isAdminBypassing())
+                        else
                         {
-                            row.tooltip("&f&oAdmin Bypass")
-                                    .command("/f unclaimat " + flocationHere.getWorld().getName() + " " + flocationHere.getX() + " " +
-                                             flocationHere.getZ() +
-                                             " true");
+                            if(fplayer.isAdminBypassing())
+                            {
+                                row.tooltip(String.format(TL.CLAIMEDTOOLTIP_FACTIONNAME.toString(), relation.getColor().toString() + factionHere.getTag()), " ",
+                                                "\u00A74\u00A7oADMIN BYPASS", "Click to \u00A7cunclaim\u00A7f.")
+                                        .command(
+                                                "/f unclaimat " + flocationHere.getWorld().getName() + " " + flocationHere.getX() + " " + flocationHere.getZ() +
+                                                " true");
+                            }
+                            else
+                            {
+                                row.tooltip(String.format(TL.CLAIMEDTOOLTIP_FACTIONNAME.toString(), relation.getColor().toString() + factionHere.getTag()))
+                                        .command("/f who " + factionHere.getTag());
+                            }
                         }
                     }
                     else
