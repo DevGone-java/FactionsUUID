@@ -390,6 +390,7 @@ public class MainConfig {
             public int getCooldown() {
                 return cooldown;
             }
+
         }
 
         public class Near {
@@ -1276,6 +1277,21 @@ public class MainConfig {
             private boolean allowOverClaim = true;
             @Comment("If true (and allowOverClaim is true, claiming over another faction's land will ignore buffer zone settings.")
             private boolean allowOverClaimIgnoringBuffer = false;
+
+            @Comment("Should there be a max distance for /f claimat?")
+            private boolean limitClaimAtDistance = false;
+            @Comment("if 'limitDistance' is true, what should the max distance be? (in chunks)")
+            private int maxClaimAtDistance = 20;
+
+            public boolean isLimitClaimAtDistance()
+            {
+                return limitClaimAtDistance;
+            }
+
+            public int getMaxClaimAtDistance()
+            {
+                return maxClaimAtDistance;
+            }
 
             public boolean isAllowOverClaim() {
                 return allowOverClaim;
@@ -2514,6 +2530,7 @@ public class MainConfig {
         private int height = 17;
         private int width = 49;
         private boolean showFactionKey = true;
+        private boolean showMapToolTips = false;
         private boolean showNeutralFactionsOnMap = true;
         private boolean showEnemyFactions = true;
         private boolean showTruceFactions = true;
@@ -2524,6 +2541,11 @@ public class MainConfig {
 
         public int getWidth() {
             return width;
+        }
+
+        public boolean isShowMapToolTips()
+        {
+            return showMapToolTips;
         }
 
         public boolean isShowFactionKey() {
