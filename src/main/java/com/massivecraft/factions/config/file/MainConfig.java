@@ -990,6 +990,7 @@ public class MainConfig {
             private String allianceChatFormat = "\u00A7d%s:\u00A7f %s";
             private String truceChatFormat = "\u00A75%s:\u00A7f %s";
             private String modChatFormat = "\u00A7c%s:\u00A7f %s";
+            private boolean broadcastLeaderChanges = true;
             private boolean broadcastDescriptionChanges = false;
             private boolean broadcastTagChanges = false;
 
@@ -1051,6 +1052,11 @@ public class MainConfig {
 
             public String getModChatFormat() {
                 return modChatFormat;
+            }
+
+            public boolean isBroadcastLeaderChanges()
+            {
+                return broadcastLeaderChanges;
             }
 
             public boolean isBroadcastDescriptionChanges() {
